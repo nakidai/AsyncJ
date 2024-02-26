@@ -22,7 +22,7 @@ class AsyncJson:
 
     async def read(self) -> dict:
         """Read the JSON file and return a dictionary."""
-        async with open(self.filepath) as file:
+        async with open(self.filepath, encoding="utf-8") as file:
             return loads(obj=await file.read())
 
     async def write(self, data: dict) -> None:
@@ -31,5 +31,5 @@ class AsyncJson:
         
         :param data: Dictionary.
         """
-        async with open(self.filepath, "w") as file:
+        async with open(self.filepath, "w", encoding="utf-8") as file:
             await file.write(dumps(obj=data, indent=4))
